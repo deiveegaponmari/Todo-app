@@ -1,4 +1,4 @@
-export default function Card({name,Description, data, handlechange}) {
+export default function Card({ data}) {
     return (
     <div className="container">
                 <div className="row">
@@ -8,7 +8,7 @@ export default function Card({name,Description, data, handlechange}) {
                             <h1>Status Filter:
                                 <div className="btn-group">
                                     <button type="button" className="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Action
+                                        All
                                     </button>
                                     <ul className="dropdown-menu">
                                         <li><a className="dropdown-item" href="#">Completed</a></li>
@@ -19,11 +19,12 @@ export default function Card({name,Description, data, handlechange}) {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-lg-4">
+                    {data.map((todo,index)=>{
+                        <div className="col-lg-4" key={index}>
                         <div className="card bg-info-subtle p-2">
                                 <div className="card-body">
-                                    <p className="h5">Name:{name}</p>
-                                    <p className="h5">Description:{Description}</p>
+                                    <p className="h5">Name:{todo.name}</p>
+                                    <p className="h5">Description:{todo.detail}</p>
                                     <p className="h5">Status:</p>
                                     <div className="btn-group gap-4">
                                     <button type="button" className="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -39,7 +40,9 @@ export default function Card({name,Description, data, handlechange}) {
                                 </div>
                         </div>
                     </div>
-                </div>
+                    })}
+                    
+                    </div>
             </div>
         
     )

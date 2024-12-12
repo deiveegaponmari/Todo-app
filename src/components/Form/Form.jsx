@@ -13,14 +13,16 @@ export default function Form() {
     }
     function handleChange(e) {
         e.preventDefault();
-        if (!name & !detail) return;
+        if (!name || !detail) return;
         const datacopy = [...data];
         datacopy.push({
-            Name: name,
-            Description: detail
+            name,
+            detail
         })
         //console.log(datacopy);
         setdata(datacopy)
+        setName("");
+        setDetail("");
 
     }
     return (
@@ -45,8 +47,11 @@ export default function Form() {
                 </div>
             </div>
             <div className="row">
-                <Card name={name} Description={detail}
-                 data={data} handlechange={handleChange}/>
+                {
+                    data.length > 0 && (
+                        <Card data={data} />
+                    )
+                }
 
             </div>
         </div>
