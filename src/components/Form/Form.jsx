@@ -1,30 +1,6 @@
 import React from "react";
-import { useState } from "react";
-import Card from "../TodoCard/Card";
-export default function Form() {
-    const [name, setName] = useState("");
-    const [detail, setDetail] = useState("");
-    const [data, setdata] = useState([]);
-    function handleName(e) {
-        setName(e.target.value)
-    }
-    function handleDetail(e) {
-        setDetail(e.target.value)
-    }
-    function handleChange(e) {
-        e.preventDefault();
-        if (!name || !detail) return;
-        const datacopy = [...data];
-        datacopy.push({
-            name,
-            detail
-        })
-        //console.log(datacopy);
-        setdata(datacopy)
-        setName("");
-        setDetail("");
-
-    }
+export default function Form({name,detail,handleName,handleDetail,handleChange}) {
+    
     return (
         <div className="container">
             <div className="row">
@@ -34,26 +10,26 @@ export default function Form() {
             </div>
             <div className="row">
                 <div className="col">
-                    <input type="text" className="form-control" onChange={handleName}
+                    <input type="text" className="form-control" value={name} onChange={handleName}
                         placeholder="Todo Name" aria-label="Todo Name" aria-describedby="addon-wrapping" />
                 </div>
                 <div className="col">
-                    <input type="text" className="form-control" onChange={handleDetail}
+                    <input type="text" className="form-control" onChange={handleDetail} value={detail}
                         placeholder="Todo Description" aria-label="Todo Description" aria-describedby="addon-wrapping" />
                 </div>
                 <div className="col">
                     <button type="button" onClick={handleChange} className="btn btn-primary">Add Todo</button>
-                    <h1>Name:{name}</h1>
+            
                 </div>
             </div>
-            <div className="row">
+           {/*  <div className="row">
                 {
                     data.length > 0 && (
                         <Card data={data} />
                     )
                 }
 
-            </div>
+            </div> */}
         </div>
 
     )
